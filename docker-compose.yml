@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: task_management_postgres
+    env_file:
+      - .env
+    volumes:
+      - task_management_postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  mongo:
+    image: mongo:5
+    container_name: task_management_logging
+    env_file:
+      - .env
+    ports:
+      - '27017:27017'
+    volumes:
+      - task_management_logging:/data/db
+
+volumes:
+  task_management_postgres_data:
+  task_management_logging:
